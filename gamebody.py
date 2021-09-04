@@ -16,8 +16,11 @@ class dataStruct():
     self.daypower = []
     self.monthpower = []
     self.yearpower = []
+    self.daygas = []
+    self.monthgas = []
+    self.yeargas = []
 
-def updateStruct(userid, userstruct, dailywater, dailypower):
+def updateStruct(userid, userstruct, dailywater, dailypower, dailygas):
   if userstruct.uid != userid:
     return 
   
@@ -33,11 +36,17 @@ def updateStruct(userid, userstruct, dailywater, dailypower):
   yearlypower = sum(userstruct.monthpower) 
   userstruct.yearpower.append(yearlypower)
   
-  tempdayscore = dailywater + dailypower #may change formula later
+  userstruct.daygas.append(dailygas) #see notes above on daywater
+  monthlygas = sum(userstruct.daygas)
+  userstruct.monthgas.append(monthlygas)
+  yearlygas = sum(userstruct.monthgas) 
+  userstruct.yeargas.append(yearlygas)
+  
+  tempdayscore = dailywater + dailypower + dailygas #may change formula later
   userstruct.dayscore = tempdayscore
-  tempmonthscore = monthlywater + monthlypower 
+  tempmonthscore = monthlywater + monthlypower + monthlygas
   userstruct.monthscore = tempmonthscore
-  tempyearscore = yearlywater + yearlypower 
+  tempyearscore = yearlywater + yearlypower + yearlygas
   userstruct.yearscore = tempyearscore
   return
 
@@ -53,19 +62,24 @@ def main():
   #assume that we have sensor data 
   dailywaterx = 1 
   dailypowerx = 1
+  dailygasx = 1
   dailywatery = 2
   dailypowery = 2
+  dailygasy = 2
   dailywaterz = 3 
   dailypowerz = 3
+  dailygasz = 3
   
   #assume that there is a trigger for when to update data and who to update
-  updateStruct(1, userx, dailywaterx, dailypowerx)
-  updateStruct(2, usery, dailywatery, dailypowery)
-  updateStruct(3, userz, dailywaterz, dailypowerz)
+  updateStruct(1, userx, dailywaterx, dailypowerx, dailygasx)
+  updateStruct(2, usery, dailywatery, dailypowery, dailygasy)
+  updateStruct(3, userz, dailywaterz, dailypowerz, dailygasz)
   
   #create + sort leaderboards
   userslist = [userx, usery, userz]
   dayscoreboard = sorted(userslist, key=operator.attrgetter('dayscore'))
   monthcoreboard = sorted(userslist, key=operator.attrgetter('monthscore'))
   yearscoreboard = sorted(userslist, key=operator.attrgetter('yearscore'))
+  
+  #print dayscoreboard[0].username, dayscoreboard[0].dayscore
   
