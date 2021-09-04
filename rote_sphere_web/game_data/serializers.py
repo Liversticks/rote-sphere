@@ -5,7 +5,7 @@ class SensorSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Sensor
         #fields = ('linked_user', 'id')
-        fields = ('id',)
+        fields = ('id', 'type')
 
 class DayUsageSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
