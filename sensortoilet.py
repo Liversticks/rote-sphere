@@ -22,8 +22,8 @@ while True:
   isused = random.randint(0,1)
   if isused: 
     #avg toilet is about 9.8 L/flush, i put lower bound a bit lower to account for low water use toilets
-    #then i set the upper bound at 6 flushes/hour bc i think thats about the most you could expect for a reasonable household per toilet
-    waterused = random.randint(1,6) * 9
+    #then i set the upper bound at 10 flushes/hour bc i think thats about the most you could expect for a reasonable household per toilet
+    waterused = random.randint(1,10) * 9
   else: 
     waterused = 0
   powerused = 0
