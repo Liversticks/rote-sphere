@@ -3,6 +3,7 @@ import random
 import time
 from datetime import datetime
 from pytz import timezone
+import requests
 
 class sensor():  
   def __init__(self, uid, type_, resource, address, unit, street, city, country, zippostcode):
@@ -26,6 +27,7 @@ class sensorData():
     
 tester1 = sensor(str(uuid.uuid4()), 'Stove', 'Power', 12345, 1, 'Notareal St', 'Notareal City', 'Atlantis', 'A1A1A1')
 random.seed()
+endpt = 'localhost:8000/game/usage/'
 
 while True: 
   #avg stove wattage is 3 kW, so at most it will use 3 kWh per hour
@@ -37,4 +39,5 @@ while True:
   waterused = 0
   package = sensorData(tester1.uid, str(datetime.now(timezone('America/Vancouver'))), waterused, powerused)
   jsonStr = json.dumps(package.__dict__)
+  requests.post(url = endpt, data = jsonStr)
   time.sleep(28800) #8 hours, or 1/3 day
