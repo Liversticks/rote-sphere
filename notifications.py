@@ -1,6 +1,7 @@
 import gamebody
+import time
 
-def checkUsage(userid, userstruct, dailyWater, dailyPower):
+def checkUsage(userid, userstruct):
     if userstruct.uid != userid:
         return
 
@@ -15,18 +16,18 @@ def checkUsage(userid, userstruct, dailyWater, dailyPower):
     averageDayPower = int(sum(userstruct.daypower[0:currentDay-1])/(currentDay-1))
 
     # Water Usage
-    waterPercentDiff = int((float(dailyWater/averageDayWater) - 1)*100)
+    waterPercentDiff = int((float(userstruct.dailywatertotal/averageDayWater) - 1)*100)
 
     # Case 1: Significant drop in water usage (e.g. over 20% less)
     # Energy usage is dropping significantly, congratulate the user!
     if (waterPercentDiff <= -20):
-        print("Congrats! Your water usage today has decreased by ", (-1)*waterPercentDiff, "%",
-        " compared to your daily average this month.")
+        print("Congrats! Your water usage today has decreased by", (-1)*waterPercentDiff, "%",
+        "compared to your daily average this month.")
 
     # Case 2: Significant rise in water usage (e.g. over 20% more)
     # Energy usage is rising significantly, inform them to check appliances!
     elif (waterPercentDiff >= 20):
-        print("Yikes! Your water usage today has increased by ", waterPercentDiff, "%",
+        print("Yikes! Your water usage today has increased by", waterPercentDiff, "%",
         "compared to your daily average this month. Check your toilet and sink sensors!")
 
     # Case 3: Consistent energy usage
@@ -35,18 +36,18 @@ def checkUsage(userid, userstruct, dailyWater, dailyPower):
         print("Nice work! Your water usage has been consistent today compared to your daily average this month.")
 
     # Power Usage
-    powerPercentDiff = int((float(dailyPower/averageDayPower) - 1)*100)
+    powerPercentDiff = int((float(userstruct.dailypowertotal/averageDayPower) - 1)*100)
 
     # Case 1: Significant drop in water usage (e.g. over 20% less)
     # Energy usage is dropping significantly, congratulate the user!
     if (powerPercentDiff <= -20):
-        print("Congrats! Your power usage today has decreased by ", (-1)*powerPercentDiff, "%",
-        " compared to your daily average this month.")
+        print("Congrats! Your power usage today has decreased by", (-1)*powerPercentDiff, "%",
+        "compared to your daily average this month.")
 
     # Case 2: Significant rise in water usage (e.g. over 20% more)
     # Energy usage is rising significantly, inform them to check appliances!
     elif (powerPercentDiff >= 20):
-        print("Yikes! Your power usage today has increased by ", powerPercentDiff, "%",
+        print("Yikes! Your power usage today has increased by", powerPercentDiff, "%",
         "compared to your daily average this month. Check your stove and computer sensors!")
 
     # Case 3: Consistent energy usage
@@ -63,24 +64,27 @@ def main():
 
     timeNow = datetime.now(timezone('America/Vancouver'))
     currentDay = int(timeNow.strftime('%d'))
+
+    # Assume structs have already been updated with data
+    # updateStruct(1, userx, dailywaterx, dailypowerx)
+    # updateStruct(2, usery, dailywatery, dailypowery)
+    # updateStruct(3, userz, dailywaterz, dailypowerz)
     
     # Use arbitrary values for now
     # User X: Significant decrease in energy usage
-    dailywaterx = 246
-    dailypowerx = 232
+    userx.dailywatertotal = 246
+    userx.dailypowertotal = 232
 
     # User Y: Consistent usage
-    dailywatery = 296
-    dailypowery = 254
+    usery.dailywatertotal = 296
+    usery.dailypowertotal = 254
 
     # User Z: Significant increase in energy usage
-    dailywaterz = 634
-    dailypowerz = 304
+    userz.dailywatertotal = 634
+    userz.dailypowertotal = 304
 
-    updateStruct(1, userx, dailywaterx, dailypowerx)
-    updateStruct(2, usery, dailywatery, dailypowery)
-    updateStruct(3, userz, dailywaterz, dailypowerz)
-
-    checkUsage(1, userx, dailywaterx, dailypowerx)
-    checkUsage(2, usery, dailywatery, dailypowery)
-    checkUsage(3, userz, dailywaterz, dailypowerz)
+    # Checks are assumed to be made daily; should add an option
+    # to grab data and sleep for a day after each notification/summary message
+    checkUsage(1, userx)
+    checkUsage(2, usery)
+    checkUsage(3, userz)
