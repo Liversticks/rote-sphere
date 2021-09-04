@@ -11,5 +11,6 @@ tester1 = sensor(uuid.uuid4(), 'Appliance')
 random.seed()
 
 while True: 
-    print random.randint(0, 10)
-    time.sleep(10)
+    gasused = random.randint(0, 10)
+    waterused = random.randint(0, 10)
+    time.sleep(3600)
