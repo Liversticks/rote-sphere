@@ -18,10 +18,10 @@ class sensor():
     
 class sensorData():
   def __init__(self, uid, datetime_, water, power):
-  self.uid = uid
-  self.datetime = datetime_
-  self.water = water
-  self.power = power
+    self.uid = uid
+    self.datetime = datetime_
+    self.water = water
+    self.power = power
     
     
 tester1 = sensor(uuid.uuid4(), 'Sink', 'Water', 12345, 1, 'Notareal St', 'Notareal City', 'Atlantis', 'A1A1A1')
