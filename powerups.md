@@ -28,6 +28,7 @@ Adapted from (Uswitch energy efficient cooking guide)[https://www.uswitch.com/en
 - Type: shower --> if reporting over a too-long time period, recommend taking shorter showers
 
 ### Laundry
+Alexa, play Adrenaline!
 - Type: dryer --> if used, recommend air-drying
 - Type: washer --> if energy usage is beyond that of cool water, recommend using cooler water
 - Type: washer --> if used too frequently (based on number of occupants), recommend less frequent but fuller loads
