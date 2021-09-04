@@ -3,6 +3,7 @@ import random
 import time
 from datetime import datetime
 from pytz import timezone
+import requests
 
 class sensor():  
   def __init__(self, uid, type_, resource, address, unit, street, city, country, zippostcode):
@@ -26,6 +27,7 @@ class sensorData():
     
 tester1 = sensor(str(uuid.uuid4()), 'Sink', 'Water', 12345, 1, 'Notareal St', 'Notareal City', 'Atlantis', 'A1A1A1')
 random.seed()
+endpt = 'localhost:8000/game/usage/'
 
 while True: 
   #avg sink uses 4 - 8 L/min, which we will avg to 6. Thus a sink uses no more than 360 L/min, but realistically no one runs their sink non stop, so we will pick a cap of 
@@ -34,4 +36,5 @@ while True:
   powerused = 0
   package = sensorData(tester1.uid, str(datetime.now(timezone('America/Vancouver'))), waterused, powerused)
   jsonStr = json.dumps(package.__dict__)
+  requests.post(url = endpt, data = jsonStr)
   time.sleep(3600)
