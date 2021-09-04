@@ -19,6 +19,8 @@ tester1 = sensor(uuid.uuid4(), 'Sink', 'Water', 12345, 1, 'Notareal St', 'Notare
 random.seed()
 
 while True: 
-  waterused = random.randint(0, 10)
+  #avg sink uses 4 - 8 L/min, which we will avg to 6. Thus a sink uses no more than 360 L/min, but realistically no one runs their sink non stop, so we will pick a cap of 
+  #~5 minutes of use per hour, aka 30 L
+  waterused = random.randint(0, 30)
   powerused = 0
   time.sleep(3600)
