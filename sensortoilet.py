@@ -18,9 +18,9 @@ class sensor():
     self.zippostcode = zippostcode
     
 class sensorData():
-  def __init__(self, uid, datetime_, water, power):
-    self.uid = uid
-    self.datetime = datetime_
+  def __init__(self, linked_sensor, day, water, power):
+    self.linked_sensor = linked_sensor
+    self.day = day
     self.water = water
     self.power = power
     
