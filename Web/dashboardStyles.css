@@ -1,0 +1,94 @@
+body {
+    margin: 0;
+}
+
+/*Header bar elements, generic across each of the tabs*/
+
+.header {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 99;
+    width: 100%;
+    min-width: 1280px;
+    height: 80px;
+    background-color: rgba(36, 36, 36, 0.9);
+    box-shadow: 0 0 5px 0 rgba(36, 36, 36, 0.9);
+}
+
+.header_logo {
+    float: left;
+    margin-left: 16px;
+    width: 200px;
+    height: 80px;
+}
+
+.header_logo img {
+    margin-left: 16px;
+    margin-top: -32px;
+    height:  160px;
+}
+
+.header_login {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 180px;
+    height: 100%;
+    background-color: rgb(73, 173, 255);
+}
+
+.header_login:hover, .header_login--focus {
+    background-color: rgb(66, 150, 219);
+    cursor: pointer;
+}
+
+.header_login img{
+    height: 80px;
+}
+
+.header_navbar {
+    display: inline-block;
+    position: relative;
+    margin-left: 30px;
+    padding-right: 16px;
+}
+
+.header_navbar_element {
+    height: 80px;
+    width: auto;
+
+    align-items: center;
+    position: relative;
+    float: left;
+
+    display: inline-flex;
+    margin: 0 30px;
+
+    font-size: 20px;
+    text-align: center;
+    color: #fff;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-decoration: none;
+}
+
+.header_navbar_element:hover {
+    text-shadow: 0 0 30px rgb(73, 173, 255),  0 0 15px rgb(66, 150, 219);
+}
+
+/*main body with the only interactive part on this page, the wheel*/
+
+.overview {
+    position: relative;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    min-width: 1280px;
+    height: 100%;
+}
+
+.overview.overview_background {
+    position: relative;
+    width: 100%;
+}
