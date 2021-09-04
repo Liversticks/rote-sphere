@@ -10,6 +10,8 @@ class dataStruct():
     self.dayscore = dayscore
     self.monthscore = monthscore
     self.yearscore = yearscore
+    self.dailywatertotal = dailywatertotal
+    self.dailypowertotal = dailypowertotal
     self.daywater = []
     self.monthwater = []
     self.yearwater = []
@@ -20,7 +22,7 @@ class dataStruct():
     self.month = 0
     self.year = 0
 
-def updateStruct(userid, userstruct, dailywater, dailypower):
+def updateStruct(userid, userstruct, inputwater, inputpower):
   if userstruct.uid != userid:
     return 
 
@@ -46,47 +48,65 @@ def updateStruct(userid, userstruct, dailywater, dailypower):
   # Update current day, append first daily item
   if (userstruct.day != currentDay):
     userstruct.day = currentDay
-    userstruct.daywater.append(dailywater) #imagine that we have real data
-    userstruct.daypower.append(dailypower) #see notes above on daywater
+    # Initialize daily consumption total (also overwrites previous day's running total)
+    userstruct.dailywatertotal = inputwater
+    userstruct.dailypowertotal = inputpower
+
+    userstruct.daywater.append(userstruct.dailywatertotal) #imagine that we have real data
+    userstruct.daypower.append(userstruct.dailypowertotal) #see notes above on daywater
 
     # Special Case: No elements to remove on the first day of each month
     if (currentDay != 1):
       userstruct.monthwater.pop()
       userstruct.monthpower.pop()
 
+    monthlywater = sum(userstruct.daywater) #sum up all the daywater values we have to get monthly water usage so far
     userstruct.monthwater.append(monthlywater)
+    monthlypower = sum(userstruct.daypower)
     userstruct.monthpower.append(monthlypower)
 
     # Yearly usage appended to on a daily basis, remove previous count and update with new one
     if (currentDay != 1 or currentMonth != 1):
       userstruct.yearwater.pop()
       userstruct.yearpower.pop()
-      
+
+    yearlywater = sum(userstruct.monthwater) #sum up all monthly values to get yearly values  
     userstruct.yearwater.append(yearlywater)
+    yearlypower = sum(userstruct.monthpower)
     userstruct.yearpower.append(yearlypower)
 
   # Daily usage may be updated several times a day, remove previous count
   # and update with new one if a value is updated within the same day
   else:
+    userstruct.dailywatertotal += inputwater
+    userstruct.dailypowertotal += inputpower
+
     userstruct.daywater.pop()
-    userstruct.daywater.append(dailywater)
+    userstruct.daywater.append(userstruct.dailywatertotal)
+    userstruct.daypower.pop()
+    userstruct.daypower.append(userstruct.dailypowertotal)
 
     # Will pop previous value regardless of the date (even if it's the 1st of the month)
     # because going into this portion of code implies that the struct has already been
     # updated earlier in the day, so data must be popped regardless
     userstruct.monthwater.pop()
+    monthlywater = sum(userstruct.daywater) #sum up all the daywater values we have to get monthly water usage so far
     userstruct.monthwater.append(monthlywater)
+
+    userstruct.monthpower.pop()
+    monthlypower = sum(userstruct.daypower)
+    userstruct.monthpower.append(monthlypower)
 
     # Same logic as above; pops yearly value and replaces with new data.
     userstruct.yearwater.pop()
+    yearlywater = sum(userstruct.monthwater) #sum up all monthly values to get yearly values
     userstruct.yearwater.append(yearlywater)
 
-  monthlywater = sum(userstruct.daywater) #sum up all the daywater values we have to get monthly water usage so far
-  yearlywater = sum(userstruct.monthwater) #sum up all monthly values to get yearly values
-  monthlypower = sum(userstruct.daypower)
-  yearlypower = sum(userstruct.monthpower) 
+    userstruct.yearpower.pop()
+    yearlypower = sum(userstruct.monthpower)
+    userstruct.yearpower.append(yearlypower)
   
-  tempdayscore = dailywater + dailypower #may change formula later
+  tempdayscore = inputwater + inputpower #may change formula later
   userstruct.dayscore = tempdayscore
   tempmonthscore = monthlywater + monthlypower 
   userstruct.monthscore = tempmonthscore
@@ -104,19 +124,19 @@ def main():
   userz = dataStruct(3, 'user3', 'pw3', None, None, None)
   
   #assume that we have sensor data 
-  dailywaterx = 1 
-  dailypowerx = 1
+  inputwaterx = 1 
+  inputpowerx = 1
   
-  dailywatery = 2
-  dailypowery = 2
+  inputwatery = 2
+  inputpowery = 2
 
-  dailywaterz = 3 
-  dailypowerz = 3
+  inputwaterz = 3 
+  inputpowerz = 3
 
   #assume that there is a trigger for when to update data and who to update
-  updateStruct(1, userx, dailywaterx, dailypowerx)
-  updateStruct(2, usery, dailywatery, dailypowery)
-  updateStruct(3, userz, dailywaterz, dailypowerz)
+  updateStruct(1, userx, inputwaterx, inputpowerx)
+  updateStruct(2, usery, inputwatery, inputpowery)
+  updateStruct(3, userz, inputwaterz, inputpowerz)
   
   #create + sort leaderboards
   userslist = [userx, usery, userz]
