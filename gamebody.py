@@ -1,5 +1,6 @@
 from datetime import datetime
 from pytz import timezone
+import operator 
 
 class dataStruct():  
   def __init__(self, uid, username, password, dayscore, monthscore, yearscore):
@@ -23,7 +24,7 @@ def updateStruct(userid, userstruct, dailywater, dailypower):
   userstruct.daywater.append(dailywater) #imagine that we have real data 
   monthlywater = sum(userstruct.daywater) #sum up all the daywater values we have to get monthly water usage so far
   userstruct.monthwater.append(monthlywater)
-  yearlywater = sum(monthwater) #sum up all monthly values to get yearly values
+  yearlywater = sum(userstruct.monthwater) #sum up all monthly values to get yearly values
   userstruct.yearwater.append(yearlywater)
   
   userstruct.daypower.append(dailypower) #see notes above on daywater
@@ -45,13 +46,26 @@ def main():
   monthscoreboard = []
   yearscoreboard = []
   #simplified users for development, change for production 
-  userx = dataStruct(1, user1, pw1, None, None, None)
-  usery = dataStruct(2, user2, pw2, None, None, None)
-  userz = dataStruct(3, user3, pw3, None, None, None)
+  userx = dataStruct(1, 'user1', 'pw1', None, None, None)
+  usery = dataStruct(2, 'user2', 'pw2', None, None, None)
+  userz = dataStruct(3, 'user3', 'pw3', None, None, None)
+  
+  #assume that we have sensor data 
+  dailywaterx = 1 
+  dailypowerx = 1
+  dailywatery = 2
+  dailypowery = 2
+  dailywaterz = 3 
+  dailypowerz = 3
   
   #assume that there is a trigger for when to update data and who to update
-  dailywater = 1 
-  dailypower = 1
-  updateStruct(1, userx, dailywater, dailypower)
+  updateStruct(1, userx, dailywaterx, dailypowerx)
+  updateStruct(2, usery, dailywatery, dailypowery)
+  updateStruct(3, userz, dailywaterz, dailypowerz)
   
+  #create + sort leaderboards
+  userslist = [userx, usery, userz]
+  dayscoreboard = sorted(userslist, key=operator.attrgetter('dayscore'))
+  monthcoreboard = sorted(userslist, key=operator.attrgetter('monthscore'))
+  yearscoreboard = sorted(userslist, key=operator.attrgetter('yearscore'))
   
