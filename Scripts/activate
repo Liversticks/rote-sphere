@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\SUser2\Documents\GitHub\rote-sphere"
+VIRTUAL_ENV="C:\Users\SUser2\Documents\GitHub\rs2\rote-sphere"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

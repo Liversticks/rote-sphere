@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\SUser2\Documents\GitHub\rote-sphere
+set VIRTUAL_ENV=C:\Users\SUser2\Documents\GitHub\rs2\rote-sphere
 
 if not defined PROMPT set PROMPT=$P$G
 

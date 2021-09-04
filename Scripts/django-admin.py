@@ -1,4 +1,4 @@
-#!c:\users\suser2\documents\github\rote-sphere\scripts\python.exe
+#!c:\users\suser2\documents\github\rs2\rote-sphere\scripts\python.exe
 # When the django-admin.py deprecation ends, remove this script.
 import warnings
 

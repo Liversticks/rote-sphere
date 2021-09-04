@@ -42,11 +42,12 @@ class Sensor(models.Model):
 
 class DayUsage(models.Model):
     def __str__(self):
-        return f'{str(self.linked_user.username)} {str(self.day)} Water used: {str(self.water)} Power used: {str(self.power)}' 
+        return f'{str(self.linked_sensor.id)} {str(self.day)} Water used: {str(self.water)} Power used: {str(self.power)}' 
     
-    linked_user = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE
+    linked_sensor = models.ForeignKey(
+        'Sensor',
+        on_delete=models.CASCADE,
+        default=None
     )
     day = models.DateTimeField('tracked day')
     water = models.DecimalField('water usage', default=0, max_digits=14, decimal_places=10)
