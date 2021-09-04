@@ -17,9 +17,9 @@ class sensor():
     self.zippostcode = zippostcode
     
 class sensorData():
-  def __init__(self, uid, datetime, water, power)
+  def __init__(self, uid, datetime_, water, power):
   self.uid = uid
-  self.datetime = datetime
+  self.datetime = datetime_
   self.water = water
   self.power = power
     
@@ -33,4 +33,5 @@ while True:
   waterused = random.randint(0, 30)
   powerused = 0
   package = sensorData(tester1.uid, datetime.now(timezone('America/Vancouver')), waterused, powerused)
+  jsonStr = json.dumps(package.__dict__)
   time.sleep(3600)
