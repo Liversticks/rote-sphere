@@ -1,6 +1,8 @@
 import uuid
 import random
 import time
+from datetime import datetime
+from pytz import timezone
 
 class sensor():  
   def __init__(self, uid, type_, resource, address, unit, street, city, country, zippostcode):
@@ -14,6 +16,13 @@ class sensor():
     self.country = country 
     self.zippostcode = zippostcode
     
+class sensorData():
+  def __init__(self, uid, datetime, water, power)
+  self.uid = uid
+  self.datetime = datetime
+  self.water = water
+  self.power = power
+    
     
 tester1 = sensor(uuid.uuid4(), 'Stove', 'Power', 12345, 1, 'Notareal St', 'Notareal City', 'Atlantis', 'A1A1A1')
 random.seed()
@@ -26,4 +35,5 @@ while True:
   else: 
     powerused = 0
   waterused = 0
+  package = sensorData(tester1.uid, datetime.now(timezone('America/Vancouver')), waterused, powerused)
   time.sleep(28800) #8 hours, or 1/3 day
