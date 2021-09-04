@@ -20,9 +20,9 @@ class SensorSerializer(serializers.ModelSerializer):
         fields = ['linked_user', 'id', 'type']
     
 
-class DayUsageSerializer(serializers.HyperlinkedModelSerializer):
-    linked_user = UserSerializer(read_only=True)
+class DayUsageSerializer(serializers.ModelSerializer):
+    linked_sensor = SensorSerializer()
     class Meta:
         model = DayUsage
         #fields = ('day', 'water', 'power')
-        fields = ['linked_user', 'day', 'water', 'power']
+        fields = ['linked_sensor', 'day', 'water', 'power']
