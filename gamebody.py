@@ -70,8 +70,12 @@ def updateStruct(userid, userstruct, dailywater, dailypower, dailygas):
   
   userstruct.daygas.append(dailygas) #see notes above on daywater
   monthlygas = sum(userstruct.daygas)
+  if (currentDay != 1):
+    userstruct.monthgas.pop()
   userstruct.monthgas.append(monthlygas)
-  yearlygas = sum(userstruct.monthgas) 
+  yearlygas = sum(userstruct.monthgas)
+  if (currentDay != 1 and currentMonth != 1):
+    userstruct.yeargas.pop()
   userstruct.yeargas.append(yearlygas)
   
   tempdayscore = dailywater + dailypower + dailygas #may change formula later
