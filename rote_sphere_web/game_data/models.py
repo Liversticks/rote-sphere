@@ -42,7 +42,7 @@ class Sensor(models.Model):
 
 class DayUsage(models.Model):
     def __str__(self):
-        return 
+        return f'{str(self.linked_user.username)} {str(self.day)} Water used: {str(self.water)} Power used: {str(self.power)}' 
     
     linked_user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
