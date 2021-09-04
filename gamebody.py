@@ -2,33 +2,32 @@ from datetime import datetime
 from pytz import timezone
 
 class dataStruct():  
-  def __init__(self, uid, dayscore, monthscore, yearscore, daywater, monthwater, yearwater, daypower, monthpower, yearpower):
+  def __init__(self, uid):
     self.uid = uid
-    self.dayscore = dayscore 
-    self.monthscore = monthscore
-    self.yearscore = yearscore
-    self.daywater = daywater
-    self.monthwater = monthwater
-    self.yearwater = yearwater
-    self.daypower = daypower
-    self.monthpower = monthpower
-    self.yearpower = yearpower
+    self.dayscore = []
+    self.monthscore = []
+    self.yearscore = []
+    self.daywater = []
+    self.monthwater = []
+    self.yearwater = []
+    self.daypower = []
+    self.monthpower = []
+    self.yearpower = []
 
-def assigntostruct(userid,userstruct):
+def updateStruct(userid, userstruct, dailywater, dailypower):
   if userstruct.uid != userid:
     return 
-  dailywater = 1 #imagine that we have real data
-  userstruct.daywater = dailywater
-  monthlywater = 2 #if we had real data, we would sum up all the days' data up until now
+  
+  userstruct.daywater.append(dailywater) #imagine that we have real data 
+  monthlywater = sum(userstruct.daywater) #sum up all the daywater values we have to get monthly water usage so far
   userstruct.monthwater = monthlywater
-  yearlywater = 3 #if we had real data, we would sum up all the months' data up until now
+  yearlywater = sum(monthwater) 
   userstruct.yearwater = yearlywater
   
-  dailypower = 1 #see above notes on dailywater
-  userstruct.daypower = dailypower
-  monthlypower = 2 
+  userstruct.daypower.append(dailypower) #see notes above on daywater
+  monthlypower = sum(userstruct.daypower)
   userstruct.monthpower = monthlypower
-  yearlypower = 3 
+  yearlypower = sum(userstruct.monthpower) 
   userstruct.yearpower = yearlypower
   
   tempdayscore = dailywater + dailypower #may change formula later
