@@ -3,6 +3,7 @@ import random
 import time
 from datetime import datetime
 from pytz import timezone
+import json
 
 class sensor():  
   def __init__(self, uid, type_, resource, address, unit, street, city, country, zippostcode):
@@ -33,4 +34,5 @@ while True:
   powerused = hoursused * 0.2
   waterused = 0
   package = sensorData(tester1.uid, datetime.now(timezone('America/Vancouver')), waterused, powerused)
+  jsonStr = json.dumps(package.__dict__)
   time.sleep(28800) #8 hours
