@@ -114,4 +114,3 @@ def main():
   yearscoreboard = sorted(userslist, key=operator.attrgetter('yearscore'))
   
   #print dayscoreboard[0].username, dayscoreboard[0].dayscore
-  
