@@ -2,8 +2,10 @@ from datetime import datetime
 from pytz import timezone
 
 class dataStruct():  
-  def __init__(self, uid, dayscore, monthscore, yearscore):
+  def __init__(self, uid, username, password, dayscore, monthscore, yearscore):
     self.uid = uid
+    self.username = username
+    self.password = password
     self.dayscore = dayscore
     self.monthscore = monthscore
     self.yearscore = yearscore
@@ -69,6 +71,19 @@ def updateStruct(userid, userstruct, dailywater, dailypower):
   tempyearscore = yearlywater + yearlypower 
   userstruct.yearscore = tempyearscore
   return
-    
+
 def main():
+  dayscoreboard = []
+  monthscoreboard = []
+  yearscoreboard = []
+  #simplified users for development, change for production 
+  userx = dataStruct(1, user1, pw1, None, None, None)
+  usery = dataStruct(2, user2, pw2, None, None, None)
+  userz = dataStruct(3, user3, pw3, None, None, None)
+  
+  #assume that there is a trigger for when to update data and who to update
+  dailywater = 1 
+  dailypower = 1
+  updateStruct(1, userx, dailywater, dailypower)
+  
   
