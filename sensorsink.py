@@ -24,7 +24,7 @@ class sensorData():
     self.power = power
     
     
-tester1 = sensor(uuid.uuid4(), 'Sink', 'Water', 12345, 1, 'Notareal St', 'Notareal City', 'Atlantis', 'A1A1A1')
+tester1 = sensor(str(uuid.uuid4()), 'Sink', 'Water', 12345, 1, 'Notareal St', 'Notareal City', 'Atlantis', 'A1A1A1')
 random.seed()
 
 while True: 
@@ -32,6 +32,6 @@ while True:
   #~5 minutes of use per hour, aka 30 L
   waterused = random.randint(0, 30)
   powerused = 0
-  package = sensorData(tester1.uid, datetime.now(timezone('America/Vancouver')), waterused, powerused)
+  package = sensorData(tester1.uid, str(datetime.now(timezone('America/Vancouver'))), waterused, powerused)
   jsonStr = json.dumps(package.__dict__)
   time.sleep(3600)
