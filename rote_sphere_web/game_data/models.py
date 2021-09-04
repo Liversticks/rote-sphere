@@ -11,8 +11,8 @@ from django.dispatch import receiver
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     address_line_1 = models.CharField(max_length=500)
-    address_line_2 = models.CharField(max_length=500, blank=True)
-    unit = models.CharField(max_length=50, blank=True)
+    address_line_2 = models.CharField(max_length=500, blank=True, null=True)
+    unit = models.CharField(max_length=50, blank=True, null=True)
     city = models.CharField(max_length=100)
     # ISO 3166 2-letter country code
     country = CountryField()
