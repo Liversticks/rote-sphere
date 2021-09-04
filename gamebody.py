@@ -16,6 +16,7 @@ class dataStruct():
     self.daypower = []
     self.monthpower = []
     self.yearpower = []
+    self.day = 0
     self.month = 0
     self.year = 0
 
@@ -42,28 +43,48 @@ def updateStruct(userid, userstruct, dailywater, dailypower):
     userstruct.monthwater.clear()
     userstruct.monthpower.clear()
 
-  userstruct.daywater.append(dailywater) #imagine that we have real data
-  monthlywater = sum(userstruct.daywater) #sum up all the daywater values we have to get monthly water usage so far
-  # If the data is updated daily, then the monthly usage would also be appended daily, so pop the last element
-  # of the monthly list before adding the new, currently updated value
-  if (currentDay != 1):
+  # Update current day, append first daily item
+  if (userstruct.day != currentDay):
+    userstruct.day = currentDay
+    userstruct.daywater.append(dailywater) #imagine that we have real data
+    userstruct.daypower.append(dailypower) #see notes above on daywater
+
+    # Special Case: No elements to remove on the first day of each month
+    if (currentDay != 1):
+      userstruct.monthwater.pop()
+      userstruct.monthpower.pop()
+
+    userstruct.monthwater.append(monthlywater)
+    userstruct.monthpower.append(monthlypower)
+
+    # Yearly usage appended to on a daily basis, remove previous count and update with new one
+    if (currentDay != 1 or currentMonth != 1):
+      userstruct.yearwater.pop()
+      userstruct.yearpower.pop()
+      
+    userstruct.yearwater.append(yearlywater)
+    userstruct.yearpower.append(yearlypower)
+
+  # Daily usage may be updated several times a day, remove previous count
+  # and update with new one if a value is updated within the same day
+  else:
+    userstruct.daywater.pop()
+    userstruct.daywater.append(dailywater)
+
+    # Will pop previous value regardless of the date (even if it's the 1st of the month)
+    # because going into this portion of code implies that the struct has already been
+    # updated earlier in the day, so data must be popped regardless
     userstruct.monthwater.pop()
-  userstruct.monthwater.append(monthlywater)
-  yearlywater = sum(userstruct.monthwater) #sum up all monthly values to get yearly values
-  # Yearly usage appended to on a daily basis, remove previous count and update with new one
-  if (currentDay != 1 or currentMonth != 1):
+    userstruct.monthwater.append(monthlywater)
+
+    # Same logic as above; pops yearly value and replaces with new data.
     userstruct.yearwater.pop()
-  userstruct.yearwater.append(yearlywater)
-  
-  userstruct.daypower.append(dailypower) #see notes above on daywater
+    userstruct.yearwater.append(yearlywater)
+
+  monthlywater = sum(userstruct.daywater) #sum up all the daywater values we have to get monthly water usage so far
+  yearlywater = sum(userstruct.monthwater) #sum up all monthly values to get yearly values
   monthlypower = sum(userstruct.daypower)
-  if (currentDay != 1):
-    userstruct.monthpower.pop()
-  userstruct.monthpower.append(monthlypower)
   yearlypower = sum(userstruct.monthpower) 
-  if (currentDay != 1 or currentMonth != 1):
-    userstruct.yearpower.pop()
-  userstruct.yearpower.append(yearlypower)
   
   tempdayscore = dailywater + dailypower #may change formula later
   userstruct.dayscore = tempdayscore
