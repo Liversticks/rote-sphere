@@ -51,7 +51,7 @@ def updateStruct(userid, userstruct, dailywater, dailypower):
   userstruct.monthwater.append(monthlywater)
   yearlywater = sum(userstruct.monthwater) #sum up all monthly values to get yearly values
   # Yearly usage appended to on a daily basis, remove previous count and update with new one
-  if (currentDay != 1 and currentMonth != 1):
+  if (currentDay != 1 or currentMonth != 1):
     userstruct.yearwater.pop()
   userstruct.yearwater.append(yearlywater)
   
@@ -61,7 +61,7 @@ def updateStruct(userid, userstruct, dailywater, dailypower):
     userstruct.monthpower.pop()
   userstruct.monthpower.append(monthlypower)
   yearlypower = sum(userstruct.monthpower) 
-  if (currentDay != 1 and currentMonth != 1):
+  if (currentDay != 1 or currentMonth != 1):
     userstruct.yearpower.pop()
   userstruct.yearpower.append(yearlypower)
   
