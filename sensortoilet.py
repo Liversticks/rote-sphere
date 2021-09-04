@@ -1,6 +1,9 @@
 import uuid
 import random
 import time
+from datetime import datetime
+from pytz import timezone
+import json
 
 class sensor():  
   def __init__(self, uid, type_, resource, address, unit, street, city, country, zippostcode):
@@ -13,6 +16,13 @@ class sensor():
     self.city = city
     self.country = country 
     self.zippostcode = zippostcode
+    
+class sensorData():
+  def __init__(self, uid, datetime, water, power)
+  self.uid = uid
+  self.datetime = datetime
+  self.water = water
+  self.power = power
     
     
 tester1 = sensor(uuid.uuid4(), 'Toilet', 'Water', 12345, 1, 'Notareal St', 'Notareal City', 'Atlantis', 'A1A1A1')
@@ -27,4 +37,6 @@ while True:
   else: 
     waterused = 0
   powerused = 0
+  package = sensorData(tester1.uid, datetime.now(timezone('America/Vancouver')), waterused, powerused)
+  jsonStr = json.dumps(package.__dict__)
   time.sleep(3600)
