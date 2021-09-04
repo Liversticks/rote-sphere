@@ -4,13 +4,19 @@ from django.conf import settings
 # Create your models here.
 
 class Sensor(models.Model):
+    def __str__(self):
+        return str(self.id)
+    
     linked_user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE
     )
-    id = models.UUIDField(primary_key=True, editable=False)
+    id = models.UUIDField(primary_key=True)
 
 class DayUsage(models.Model):
+    def __str__(self):
+        return 
+    
     linked_user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE
