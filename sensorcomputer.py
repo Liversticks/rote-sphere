@@ -15,10 +15,12 @@ class sensor():
     self.zippostcode = zippostcode
     
     
-tester1 = sensor(uuid.uuid4(), 'Appliance', 'Resource', 12345, 1, 'Notareal St', 'Notareal City', 'Atlantis', 'H0H0H0')
+tester1 = sensor(uuid.uuid4(), 'Computer', 'Power', 12345, 1, 'Notareal St', 'Notareal City', 'Atlantis', 'A1A1A1')
 random.seed()
 
 while True: 
-    powerused = random.randint(0, 10)
-    waterused = random.randint(0, 10)
-    time.sleep(3600)
+  #avg computer wattage is 60 - 250 watts, so ill pick 200 as a rounder number, meaning it uses at most 0.2 kWh per hour. unfortunate choice of value. 
+  hoursused = random.randint(0, 16) / 2
+  powerused = hoursused * 0.2
+  waterused = 0
+  time.sleep(28800) #8 hours

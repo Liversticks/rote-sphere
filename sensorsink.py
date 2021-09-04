@@ -15,10 +15,12 @@ class sensor():
     self.zippostcode = zippostcode
     
     
-tester1 = sensor(uuid.uuid4(), 'Appliance', 'Resource', 12345, 1, 'Notareal St', 'Notareal City', 'Atlantis', 'H0H0H0')
+tester1 = sensor(uuid.uuid4(), 'Sink', 'Water', 12345, 1, 'Notareal St', 'Notareal City', 'Atlantis', 'A1A1A1')
 random.seed()
 
 while True: 
-    powerused = random.randint(0, 10)
-    waterused = random.randint(0, 10)
-    time.sleep(3600)
+  #avg sink uses 4 - 8 L/min, which we will avg to 6. Thus a sink uses no more than 360 L/min, but realistically no one runs their sink non stop, so we will pick a cap of 
+  #~5 minutes of use per hour, aka 30 L
+  waterused = random.randint(0, 30)
+  powerused = 0
+  time.sleep(3600)

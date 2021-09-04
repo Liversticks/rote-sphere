@@ -15,10 +15,15 @@ class sensor():
     self.zippostcode = zippostcode
     
     
-tester1 = sensor(uuid.uuid4(), 'Appliance', 'Resource', 12345, 1, 'Notareal St', 'Notareal City', 'Atlantis', 'H0H0H0')
+tester1 = sensor(uuid.uuid4(), 'Stove', 'Power', 12345, 1, 'Notareal St', 'Notareal City', 'Atlantis', 'A1A1A1')
 random.seed()
 
 while True: 
-    powerused = random.randint(0, 10)
-    waterused = random.randint(0, 10)
-    time.sleep(3600)
+  #avg stove wattage is 3 kW, so at most it will use 3 kWh per hour
+  isused = random.randint(0,1)
+  if isused: 
+    powerused = random.randint(0, 24)
+  else: 
+    powerused = 0
+  waterused = 0
+  time.sleep(28800) #8 hours, or 1/3 day
