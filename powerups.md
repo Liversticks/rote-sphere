@@ -36,7 +36,7 @@ Alexa, play Adrenaline!
 ### Shared
 - Type: hot water tank --> if exceeding mean energy use per capita, recommend using cooler water
 - Type: thermostat --> if temperature is set too high/low leading to elevated energy use, recommend gradually adjusting temperature towards a level that reduces energy use
-- Type: lights --> if during daylight hours (calculated by location), recommend opening curtains/blinds to maximize natural light
+- Type: lights --> if during daylight hours (calculated by location), recommend opening curtains/blinds to maximize natural light. exceptions for darker seasons like winter
 
 ### Electronics
 - Type: all --> If reporting sustained low energy usage, recommend unplugging (curb phantom power use)

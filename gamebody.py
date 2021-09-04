@@ -106,11 +106,11 @@ def updateStruct(userid, userstruct, inputwater, inputpower):
     yearlypower = sum(userstruct.monthpower)
     userstruct.yearpower.append(yearlypower)
   
-  tempdayscore = inputwater + inputpower #may change formula later
+  tempdayscore = 0.25 * userstruct.daywater[-1] + userstruct.daypower[-1] #may change formula later
   userstruct.dayscore = tempdayscore
-  tempmonthscore = monthlywater + monthlypower 
+  tempmonthscore = 0.25 * monthlywater + monthlypower 
   userstruct.monthscore = tempmonthscore
-  tempyearscore = yearlywater + yearlypower 
+  tempyearscore = 0.25 * yearlywater + yearlypower 
   userstruct.yearscore = tempyearscore
   return
 
