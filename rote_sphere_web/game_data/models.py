@@ -18,6 +18,7 @@ class Profile(models.Model):
     country = CountryField()
     # no validation
     mailcode = models.CharField(max_length=50)
+    building_occupants = models.IntegerField()
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
