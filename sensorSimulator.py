@@ -14,6 +14,12 @@ class sensor():
     self.country = country 
     self.zippostcode = zippostcode
     
+class sensorData():
+  def __init__(self, uid, datetime, water, power)
+  self.uid = uid
+  self.datetime = datetime
+  self.water = water
+  self.power = power
     
 tester1 = sensor(uuid.uuid4(), 'Appliance', 'Resource', 12345, 1, 'Notareal St', 'Notareal City', 'Atlantis', 'H0H0H0')
 random.seed()
