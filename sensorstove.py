@@ -20,6 +20,10 @@ random.seed()
 
 while True: 
   #avg stove wattage is 3 kW, so at most it will use 3 kWh per hour
-  powerused = random.randint(0, 24)
+  isused = random.randint(0,1)
+  if isused: 
+    powerused = random.randint(0, 24)
+  else: 
+    powerused = 0
   waterused = 0
   time.sleep(28800) #8 hours, or 1/3 day
