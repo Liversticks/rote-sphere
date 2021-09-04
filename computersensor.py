@@ -15,7 +15,7 @@ class sensor():
     self.zippostcode = zippostcode
     
     
-tester1 = sensor(uuid.uuid4(), 'Computer', 'Power', 12345, 1, 'Notareal St', 'Notareal City', 'Atlantis', 'H0H0H0')
+tester1 = sensor(uuid.uuid4(), 'Computer', 'Power', 12345, 1, 'Notareal St', 'Notareal City', 'Atlantis', 'A1A1A1')
 random.seed()
 
 while True: 
