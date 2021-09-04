@@ -16,13 +16,10 @@ class dataStruct():
     self.daypower = []
     self.monthpower = []
     self.yearpower = []
-    self.daygas = []
-    self.monthgas = []
-    self.yeargas = []
     self.month = 0
     self.year = 0
 
-def updateStruct(userid, userstruct, dailywater, dailypower, dailygas):
+def updateStruct(userid, userstruct, dailywater, dailypower):
   if userstruct.uid != userid:
     return 
 
@@ -68,21 +65,11 @@ def updateStruct(userid, userstruct, dailywater, dailypower, dailygas):
     userstruct.yearpower.pop()
   userstruct.yearpower.append(yearlypower)
   
-  userstruct.daygas.append(dailygas) #see notes above on daywater
-  monthlygas = sum(userstruct.daygas)
-  if (currentDay != 1):
-    userstruct.monthgas.pop()
-  userstruct.monthgas.append(monthlygas)
-  yearlygas = sum(userstruct.monthgas)
-  if (currentDay != 1 and currentMonth != 1):
-    userstruct.yeargas.pop()
-  userstruct.yeargas.append(yearlygas)
-  
-  tempdayscore = dailywater + dailypower + dailygas #may change formula later
+  tempdayscore = dailywater + dailypower #may change formula later
   userstruct.dayscore = tempdayscore
-  tempmonthscore = monthlywater + monthlypower + monthlygas
+  tempmonthscore = monthlywater + monthlypower 
   userstruct.monthscore = tempmonthscore
-  tempyearscore = yearlywater + yearlypower + yearlygas
+  tempyearscore = yearlywater + yearlypower 
   userstruct.yearscore = tempyearscore
   return
 
@@ -98,18 +85,17 @@ def main():
   #assume that we have sensor data 
   dailywaterx = 1 
   dailypowerx = 1
-  dailygasx = 1
+  
   dailywatery = 2
   dailypowery = 2
-  dailygasy = 2
+
   dailywaterz = 3 
   dailypowerz = 3
-  dailygasz = 3
-  
+
   #assume that there is a trigger for when to update data and who to update
-  updateStruct(1, userx, dailywaterx, dailypowerx, dailygasx)
-  updateStruct(2, usery, dailywatery, dailypowery, dailygasy)
-  updateStruct(3, userz, dailywaterz, dailypowerz, dailygasz)
+  updateStruct(1, userx, dailywaterx, dailypowerx)
+  updateStruct(2, usery, dailywatery, dailypowery)
+  updateStruct(3, userz, dailywaterz, dailypowerz)
   
   #create + sort leaderboards
   userslist = [userx, usery, userz]
