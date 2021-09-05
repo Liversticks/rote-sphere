@@ -11,7 +11,7 @@ def main(filename):
     colours = ['orange', 'blue']
     # Note: sizes and labels will be added separately in CSS
     plt.pie(sizes, explode=explode, colors=colours, shadow=True)
-    plt.savefig(filename)
+    plt.savefig(filename, transparent=True)
     plt.show()
 
 if __name__ == '__main__':
