@@ -322,12 +322,12 @@ body {
 
 .display_info_progressinfovalue{
     position: relative;
-    width: 50px;
+    width: 100px;
     height: 32px;
 
     text-align: center;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size: 32px;
+    font-size: 22px;
     color: #fff;
 }
 
@@ -337,4 +337,39 @@ body {
     color: #fff;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     text-decoration: none;
+}
+
+/*lower display on the dashboard page*/
+.displaylower {
+    position: relative;
+    left: 0;
+    top: 60vh;
+    width: 100%;
+    min-width: 1280px;
+    height: 720px;
+
+    display: flex;
+  
+    justify-content: center;
+    align-items: center;
+}
+
+.displaylower_infotext {
+    position: relative;
+    width: 100%;
+    min-width: 900px;
+    height: 200px;
+    margin: 30px 30px;
+
+    font-size: 172px;
+    text-align: center;
+    color: #fff;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-decoration: none;
+}
+
+.displaylower img{
+    position: absolute;
+    top:450px;
+    width: 1080px;
 }
