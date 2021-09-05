@@ -2,8 +2,9 @@
 <html>
     <head>
         <link rel="stylesheet" href="dashboardStyles.css">
+        <script src="dashboardJs.js"></script>
     </head>
-    <body>
+    <body onload="onLoad()">
         <div id="_dashboard">
             <div class="header">
                 <div class="header_logo">
@@ -25,15 +26,80 @@
                 </div>
             </div>
             <div class="overview">
-                <img src="dashBoardElements/page_background.png" class="overview_background">
+                <img src="dashBoardElements/top_section_background.png" class="overview_topbackground">
+                <div class="display">
+                    <div class="display_info">
+                        <div class="display_info_leftlabel">POWER</div>
+                        <div class="display_info_segmentlinemain"></div>
+                        <div class="display_info_valuesegment">
+                            <div class="display_info_totalpercentinfo" id="sectionPercentValuePower">xx% of total</div>
+                            <div class="display_info_sectionvalueinfo" id="sectionValuePower">000</div>
+                        </div>
+                        <div class="display_info_segmentlinesmall"></div>
+                        <div class="display_info_progresssegment">
+                            <div class="display_info_progressinfo" id="progressTextPower">same as previous</div>
+                            <div class="display_info_progressinfovalue" id="progressValuePower">00%</div>
+                        </div>
+                        <div class="display_info_segmentlinesmall"></div>
+                        <a href="" class="display_info_gotodetailtext">GO TO DETAILS</a>
+                    </div>
+                    <div class="display_wheel">
+                        <div class="display_wheel_defaultback">
+                            <img src="dashBoardElements/center_wheel_white.png">
+                            <div class="display_wheel_app"></div>
+                            <div class="display_wheel_front">
+                                <img src="dashBoardElements/center_wheel_grey.png">
+                                <div class="display_wheel_text" id="displayWheelText">000</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="display_info">
+                        <div class="display_info_rightlabel">WATER</div>
+                        <div class="display_info_segmentlinemain"></div>
+                        <div class="display_info_valuesegment">
+                            <div class="display_info_sectionvalueinfo" id="sectionValueWater">000</div>
+                            <div class="display_info_totalpercentinfo" id="sectionPercentValueWater">xx% of total</div>
+                        </div>
+                        <div class="display_info_segmentlinesmall"></div>
+                        <div class="display_info_progresssegment">
+                            <div class="display_info_progressinfovalue" id="progressValueWater">00%</div>
+                            <div class="display_info_progressinfo" id="progressTextWater"v>same as previous</div>
+                        </div>
+                        <div class="display_info_segmentlinesmall"></div>
+                        <a href="" class="display_info_gotodetailtext">GO TO DETAILS</a>
+                    </div>
+                </div>
             </div>
             <div class="footer">
-
+                <div class="footer_socialnavbar">
+                    <a href="" class="footer_socialnavbar_element">
+                        <img src="dashBoardElements/bottom_bar_facebook.png">
+                    </a>
+                    <a href="" class="footer_socialnavbar_element">
+                        <img src="dashBoardElements/bottom_bar_twitter.png">
+                    </a>
+                    <a href="" class="footer_socialnavbar_element">
+                        <img src="dashBoardElements/bottom_bar_youtube.png">
+                    </a>
+                    <a href="" class="footer_socialnavbar_element">
+                        <img src="dashBoardElements/bottom_bar_discord.png">
+                    </a>
+                </div>
+                <div class="footer_infonavbar">
+                    <a href="" class="footer_infonavbar_element">
+                        | PRIVACY POLICY
+                    </a>
+                    <a href="" class="footer_infonavbar_element">
+                         | TERMS OF SERVICE
+                    </a>
+                    <a href="" class="footer_infonavbar_element">
+                         | ABOUT US |
+                    </a>
+                </div>
+                <div class="footer_logo">
+                    <img src="dashBoardElements/bottom_bar_combination_logo.png">
+                </div>
             </div>
         </div>
-add main container
-add the header
-add the webgl element in the middle for displaying elements
-add the footer 
     </body>
 </html>
